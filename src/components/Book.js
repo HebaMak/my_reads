@@ -1,15 +1,14 @@
 import { useContext , useState , useEffect} from "react"
 import { Context } from "../Context"
 
-const Book = ({book} ) => {
+const Book = ({book}) => {
   const {changeShelf} = useContext(Context)
   const {imageLinks, authors , title} = book
-  const [isSelected , setIsSelected] = useState(false)
+  // const [isSelected , setIsSelected] = useState(false)
 
   const updateShelf = e => {
     changeShelf(book , e.target.value)
-      setIsSelected(true)
-    
+    console.log(e.target.defaultValue);
   }
 
 
@@ -32,16 +31,16 @@ const Book = ({book} ) => {
           }} >
         </div>
         <div className="book-shelf-changer">
-          <select onChange={updateShelf} defaultValue='none'>
+          <select onChange={updateShelf} defaultValue={book.shelf ? book.shelf : 'none'}>
             <option value="none" disabled>
               Move to...
             </option>
-            <option value="none" style={{background: !isSelected ? 'red' : 'transparent'}} >None</option>
-            <option value="currentlyReading" style={{background: isSelected ? 'red' : 'transparent'}}>
+            <option value="none">None</option>
+            <option value="currentlyReading">
               Currently Reading
             </option>
-            <option value="wantToRead"  style={{background: isSelected ? 'red' : 'transparent'}}>Want to Read</option>
-            <option value="read"  style={{background: isSelected ? 'red' : 'transparent'}}>Read</option>
+            <option value="wantToRead">Want to Read</option>
+            <option value="read">Read</option>
           </select>
         </div>
       </div>
