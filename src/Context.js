@@ -10,13 +10,14 @@ const ContextProvider = ({children}) => {
   const [searchBookList , setSearchBookList] = useState([])
   const [searchTerm , setSearchTerm] = useState('')
   const [emptyMessage , setEmptyMessage] = useState(true)
+  
 
   const handleChange = e => {
     setSearchTerm(e.target.value)
   } 
 
   useEffect(() => {
-    if(searchTerm) {
+    if(searchTerm.length > 0 ) {
       BooksAPI.search(searchTerm.trim() , 50).then(res => {
         setSearchBookList(res)
         setEmptyMessage(false)
@@ -48,7 +49,7 @@ const ContextProvider = ({children}) => {
     handleChange, 
     searchTerm, 
     emptyMessage,
-    searchBookList
+    searchBookList,   
   }
 
   return (
