@@ -1,14 +1,12 @@
-import { useContext , useState , useEffect} from "react"
+import { useContext} from "react"
 import { Context } from "../Context"
 
 const Book = ({book}) => {
   const {changeShelf} = useContext(Context)
   const {imageLinks, authors , title} = book
-  // const [isSelected , setIsSelected] = useState(false)
 
   const updateShelf = e => {
     changeShelf(book , e.target.value)
-    console.log(e.target.defaultValue);
   }
 
 

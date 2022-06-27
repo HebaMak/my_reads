@@ -5,7 +5,16 @@ import Book from './Book';
 
 const Search = () => {
 
-  const {changeShelf , searchTerm , handleChange , emptyMessage , searchBookList} = useContext(Context)
+  const { changeShelf,
+          searchTerm,
+          handleChange,
+          emptyMessage, 
+          searchBookList,
+          bookList} = useContext(Context)
+
+  const updateShelf = (e , book) => {
+    changeShelf(book , e.target.value)
+  }
 
   return (
     <div className="search-books">
@@ -25,11 +34,11 @@ const Search = () => {
       <div className="search-books-results">
         { emptyMessage &&  <h2>Please Enter a Book Name</h2>}
         <ol className="books-grid">
-          {
-            !searchBookList.error ? searchBookList.map(book =>  
+          {                                                    
+            !searchBookList.error ? searchBookList.map(book => bookList.find(mPbook => mPbook.id === book.id) || book ).map( book =>
               (
                 <li key={book.id}>
-                  <Book book={book} changeShelf={changeShelf}/>
+                  <Book book={book} changeShelf={()=>updateShelf(book)}/>
                 </li>
               )
             ) : <h2>No Book Found</h2>

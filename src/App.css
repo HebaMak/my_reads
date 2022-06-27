@@ -162,7 +162,11 @@ body,
   cursor: pointer;
   margin-left: 20px;
 }
-
+.book-shelf-changer select option[selected] {
+  font-weight: bold;
+  font-size: 13px;
+  color: red
+}
 
 /* book cover */
 .book-cover {

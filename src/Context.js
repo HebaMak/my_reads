@@ -14,8 +14,8 @@ const ContextProvider = ({children}) => {
 
   const handleChange = e => {
     setSearchTerm(e.target.value)
-  } 
-
+  }
+  
   useEffect(() => {
     if(searchTerm.length > 0 ) {
       BooksAPI.search(searchTerm.trim() , 50).then(res => {
@@ -42,6 +42,9 @@ const ContextProvider = ({children}) => {
     })
   }
   
+  const updateShelf = (book , e) => {
+    changeShelf(book , e.target.value)
+  }
 
   const value = {
     changeShelf, 
@@ -49,7 +52,8 @@ const ContextProvider = ({children}) => {
     handleChange, 
     searchTerm, 
     emptyMessage,
-    searchBookList,   
+    searchBookList,
+    updateShelf   
   }
 
   return (
